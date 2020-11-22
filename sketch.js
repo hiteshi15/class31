@@ -1,7 +1,28 @@
+var s = "this is string data";
+console.log(s);
+var num = 1;
+console.log(num);
+var a;
+console.log(a);
+a = null;
+console.log(a);
+var arr1 = [1,2,3,4,5];
+console.log(arr1[2]);
+var arr2 = [20, "hiteshi", true];
+console.log(arr2[1]);
+var arr3 = [[20,30], [40,50], [60,70]];
+console.log(arr3[1][0]);
+arr3.push("hiteshi");
+console.log(arr3);
+arr3.pop();
+console.log(arr3);
+
 const Engine = Matter.Engine;
 const World= Matter.World;
 const Bodies = Matter.Bodies;
 const Constraint = Matter.Constraint;
+
+var GameState = "onSling"
 
 var engine, world;
 var box1, pig1,pig3;
@@ -69,11 +90,13 @@ function draw(){
 }
 
 function mouseDragged(){
-    Matter.Body.setPosition(bird.body, {x: mouseX , y: mouseY});
+    if(GameState !== "launched"){
+        Matter.Body.setPosition(bird.body, {x: mouseX , y: mouseY});
+    }
 }
 
-
 function mouseReleased(){
+    GameState = "launched";
     slingshot.fly();
 }
 
